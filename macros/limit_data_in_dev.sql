@@ -2,5 +2,4 @@
 {% if target.name == 'development' %}
 where {{column_name}} >= dateadd('day', -30, current_timestamp)
 {% endif %}
-{{target.name }}
 {% endmacro %}
