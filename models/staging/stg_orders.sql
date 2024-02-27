@@ -14,12 +14,13 @@ select
     p.productid,
     p.productname,
     p.subcategory,
-    o.ordersellingprice - o.ordercostprice as orderprofit,
     o.ordercostprice,
     o.ordersellingprice,
-    {{ markup('ordersellingprice', 'ordercostprice') }} as markup
+    o.ordersellingprice - o.ordercostprice as orderprofit,
+{{ markup('ordersellingprice', 'ordercostprice') }} as markup
 from {{ ref('raw_orders') }} as o
 left join {{ ref('raw_customer') }} as c
-on o.customerid = c.customerid
+    on o.customerid = c.customerid
 left join {{ ref('raw_product') }} as p
-on o.productid = p.productid
+    on o.productid = p.productid
+{{ limit_data_in_dev('orderdate') }}
