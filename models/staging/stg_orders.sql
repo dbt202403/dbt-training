@@ -6,10 +6,12 @@ select
     o.shipmode,
     c.customername,
     -- from raw customer
+    c.customerid,
     c.segment,
     c.country,
     p.category,
     --from raw product
+    p.productid,
     p.productname,
     p.subcategory,
     o.ordersellingprice - o.ordercostprice as orderprofit,
